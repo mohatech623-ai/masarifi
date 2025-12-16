@@ -13,7 +13,7 @@
     <style>
         /* --- المتغيرات والألوان --- */
         :root {
-            --primary-color: #009081; /* تم تغيير اللون الأخضر هنا */
+            --primary-color: #009081; 
             --secondary-color: #064e3b;
             --text-color: #374151;
             --bg-light: #f9fafb;
@@ -65,7 +65,7 @@
         .logo {
             font-size: 1.5rem;
             font-weight: 900;
-            color: var(--primary-color); /* اللون الأساسي يؤثر هنا */
+            color: var(--primary-color); 
             display: flex;
             align-items: center;
             gap: 5px; 
@@ -89,7 +89,7 @@
             transition: var(--transition);
         }
 
-        .nav-links a:hover { color: var(--primary-color); } /* اللون الأساسي يؤثر هنا */
+        .nav-links a:hover { color: var(--primary-color); } 
 
         /* --- قسم البطل (Hero Section) --- */
         .hero {
@@ -113,7 +113,7 @@
             line-height: 1.2;
         }
 
-        .hero-title span { color: var(--primary-color); } /* اللون الأساسي يؤثر هنا */
+        .hero-title span { color: var(--primary-color); } 
 
         .hero-description {
             font-size: 1.1rem;
@@ -148,7 +148,7 @@
             box-shadow: 0 8px 15px rgba(0,0,0,0.2);
         }
         
-        .btn-android:hover { background-color: var(--primary-color); } /* اللون الأساسي يؤثر هنا */
+        .btn-android:hover { background-color: var(--primary-color); } 
 
         .hero-image {
             flex: 1;
@@ -156,7 +156,6 @@
             justify-content: center;
         }
 
-        /* تنسيق صورة الهاتف (بدون إطار وهمي) */
         .phone-mockup {
             width: 300px; 
             height: auto;
@@ -174,76 +173,64 @@
             display: block;
         }
 
-        /* --- قسم المميزات والاقسام الأخرى --- */
-        .section {
+        /* --- القسم الجديد: قائمة المميزات المتسلسلة (Feature List) --- */
+        .features-list {
             padding: 80px 0;
-            text-align: center;
+            background-color: var(--white);
         }
         
-        .features { background-color: var(--white); }
-        .screenshots { background-color: var(--bg-light); }
-
-        .section-title {
-            font-size: 2rem;
-            margin-bottom: 10px;
-            color: var(--secondary-color);
-        }
-
-        /* --- تنسيق الشبكة للمميزات --- */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-
-        .feature-card {
-            padding: 30px;
-            background: var(--bg-light);
-            border-radius: 20px;
-            transition: var(--transition);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-        }
-
-        .feature-icon {
-            color: var(--primary-color); /* اللون الأساسي يؤثر هنا */
-            font-size: 2.5rem;
-            margin-bottom: 20px;
+        .feature-block {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+            margin-bottom: 80px;
+            padding: 40px 0;
+            border-bottom: 1px solid #eee;
         }
         
-        /* --- تنسيق معرض الصور (Screenshots Gallery) --- */
-        .screenshots-gallery {
+        .feature-block:last-child { border-bottom: none; }
+        
+        .feature-block-content {
+            flex: 1;
+            max-width: 500px;
+        }
+        
+        .feature-block-image {
+            flex: 1;
             display: flex;
             justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin-top: 50px;
         }
         
-        .screenshot-item {
-            width: 180px; 
+        .feature-block-image img {
+            width: 250px; /* حجم أصغر لصور الشاشة في القائمة */
             height: auto;
             border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
         
-        .screenshot-item:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        .feature-title {
+            font-size: 2rem;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
         }
         
-        .screenshot-item img {
-            width: 100%;
-            height: auto;
-            display: block;
+        .feature-block-content p {
+            font-size: 1.1rem;
+            color: #6b7280;
+        }
+        
+        .feature-icon-small {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-left: 10px;
         }
 
+        /* التنسيق التبادلي (Reverse order for even blocks) */
+        .feature-block:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+        
         /* --- الفوتر --- */
         footer {
             background-color: var(--secondary-color);
@@ -263,6 +250,23 @@
         .footer-links a:hover { color: var(--white); }
 
         /* --- التجاوب --- */
+        @media (max-width: 992px) {
+             /* جعل قائمة المميزات عمودية على الشاشات الصغيرة */
+            .feature-block {
+                flex-direction: column !important; /* مهم لإلغاء الترتيب التبادلي */
+                text-align: center;
+                gap: 30px;
+            }
+            
+            .feature-block-content {
+                max-width: 100%;
+            }
+
+            .feature-block-image {
+                order: -1; /* وضع الصورة في الأعلى في وضع الجوال */
+            }
+        }
+        
         @media (max-width: 768px) {
             .hero {
                 flex-direction: column-reverse;
@@ -290,8 +294,7 @@
             </div>
             <nav>
                 <ul class="nav-links">
-                    <li><a href="#features">المميزات</a></li>
-                    <li><a href="#screenshots">لقطات الشاشة</a></li>
+                    <li><a href="#feature-list-section">المميزات</a></li>
                 </ul>
             </nav>
         </div>
@@ -329,55 +332,73 @@
         </div>
     </section>
 
-    <section id="features" class="section features">
+    <section id="feature-list-section" class="features-list">
         <div class="container">
-            <h2 class="section-title">لماذا تختار Masarifi؟</h2>
-            <p style="color:#666; max-width:600px; margin:0 auto;">حلول مالية ذكية تناسب احتياجاتك اليومية</p>
-            
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-chart-column"></i></div>
-                    <h3>تقارير ذكية</h3>
-                    <p>راقب أين تذهب أموالك من خلال رسوم بيانية تفاعلية وسهلة الفهم.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
-                    <h3>أمان وخصوصية</h3>
-                    <p>بياناتك محفوظة محلياً ومشفرة لضمان أعلى درجات الخصوصية.</p>
-                </div>
+            <div style="text-align: center; margin-bottom: 50px;">
+                <h2 class="section-title">إليك أهم مميزات Masarifi</h2>
+                <p style="color:#666; max-width:600px; margin:0 auto;">لكل ميزة صورة توضيحية من داخل التطبيق.</p>
+            </div>
 
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-bolt"></i></div>
-                    <h3>سهولة الاستخدام</h3>
-                    <p>واجهة مستخدم بسيطة تتيح لك إضافة العمليات المالية بسرعة فائقة.</p>
+            <div class="feature-block">
+                <div class="feature-block-content">
+                    <h3 class="feature-title"><i class="fa-solid fa-chart-column feature-icon-small"></i> تقارير ذكية وشاملة</h3>
+                    <p>
+                        احصل على نظرة واضحة لأموالك. رسوم بيانية تفاعلية تلخص نفقاتك الشهرية وتصنيفات المصروفات، لتتمكن من تحديد مجالات التوفير بسهولة.
+                    </p>
+                </div>
+                <div class="feature-block-image">
+                    <img src="app-screen1.png.jpg" alt="شاشة التقارير">
                 </div>
             </div>
-        </div>
-    </section>
-    
-    <section id="screenshots" class="section screenshots">
-        <div class="container">
-            <h2 class="section-title">شاهد التطبيق من الداخل</h2>
-            <p style="color:#666; max-width:600px; margin:0 auto;">استعرض ميزات التطبيق الرئيسية من خلال هذه اللقطات.</p>
+
+            <div class="feature-block">
+                <div class="feature-block-content">
+                    <h3 class="feature-title"><i class="fa-solid fa-shield-halved feature-icon-small"></i> أمان وحماية للبيانات</h3>
+                    <p>
+                        بياناتك المالية هي سرك، ونحن نحافظ عليه. يتم تخزين جميع معلوماتك المالية بشكل آمن ومشفر، مع ضمان خصوصيتك التامة.
+                    </p>
+                </div>
+                <div class="feature-block-image">
+                    <img src="app-screen2.png.jpg" alt="شاشة الأمان">
+                </div>
+            </div>
             
-            <div class="screenshots-gallery">
-                <div class="screenshot-item">
-                    <img src="app-screen1.png.jpg" alt="لقطة شاشة 1">
+            <div class="feature-block">
+                <div class="feature-block-content">
+                    <h3 class="feature-title"><i class="fa-solid fa-bolt feature-icon-small"></i> سهولة في تسجيل المصروفات</h3>
+                    <p>
+                        وداعاً للتأخير! سجل مصاريفك وإيراداتك في ثوانٍ معدودة بفضل واجهة المستخدم السريعة والبديهية المصممة لراحتك.
+                    </p>
                 </div>
-                <div class="screenshot-item">
-                    <img src="app-screen2.png.jpg" alt="لقطة شاشة 2">
-                </div>
-                <div class="screenshot-item">
-                    <img src="app-screen3.png.jpg" alt="لقطة شاشة 3">
-                </div>
-                <div class="screenshot-item">
-                    <img src="app-screen4.png.jpg" alt="لقطة شاشة 4">
-                </div>
-                <div class="screenshot-item">
-                    <img src="app-screen5.png.jpg" alt="لقطة شاشة 5">
+                <div class="feature-block-image">
+                    <img src="app-screen3.png.jpg" alt="شاشة إضافة مصروف">
                 </div>
             </div>
+            
+            <div class="feature-block">
+                <div class="feature-block-content">
+                    <h3 class="feature-title"><i class="fa-solid fa-tags feature-icon-small"></i> تصنيفات وإدارة الفواتير</h3>
+                    <p>
+                        صنّف مصروفاتك كيفما تشاء، وقم بإضافة تنبيهات للفواتير والمستحقات، لضمان عدم نسيان أي موعد دفع مهم.
+                    </p>
+                </div>
+                <div class="feature-block-image">
+                    <img src="app-screen4.png.jpg" alt="شاشة التصنيفات">
+                </div>
+            </div>
+            
+             <div class="feature-block" style="border-bottom: none;">
+                <div class="feature-block-content">
+                    <h3 class="feature-title"><i class="fa-solid fa-piggy-bank feature-icon-small"></i> وضع الميزانية والتوفير</h3>
+                    <p>
+                        حدد ميزانية لكل فئة، وتتبع تقدمك نحو أهدافك المالية. Masarifi يساعدك على البقاء ضمن حدودك المالية وتوفير المزيد.
+                    </p>
+                </div>
+                <div class="feature-block-image">
+                    <img src="app-screen5.png.jpg" alt="شاشة الميزانية">
+                </div>
+            </div>
+            
         </div>
     </section>
 
