@@ -1,119 +1,351 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<title>Masarifi DZ</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="تطبيق مصاريفي - أفضل تطبيق لإدارة نفقاتك وميزانيتك الشخصية">
+    <title>مصاريفي | Masarifi - رفيقك المالي</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-<style>
-body{
-  margin:0;
-  font-family: Arial, sans-serif;
-  background:#050b1a;
-  color:white;
-}
-.container{
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-}
-.card{
-  max-width:1100px;
-  width:100%;
-  background:linear-gradient(180deg,#0a1228,#050b1a);
-  border-radius:24px;
-  padding:40px;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:40px;
-  box-shadow:0 40px 80px rgba(0,0,0,.6);
-}
-.left h1{
-  font-size:40px;
-  margin-bottom:15px;
-}
-.left p{
-  color:#b9c2ff;
-  font-size:18px;
-  line-height:1.6;
-}
-.btn{
-  display:inline-block;
-  margin-top:25px;
-  padding:15px 34px;
-  background:#0aa394;
-  color:white;
-  font-weight:bold;
-  border-radius:30px;
-  text-decoration:none;
-  box-shadow:0 10px 30px rgba(10,163,148,.4);
-}
-.features{
-  margin-top:30px;
-}
-.features div{
-  margin-bottom:10px;
-  color:#dfe6ff;
-}
-.phone{
-  display:flex;
-  justify-content:center;
-}
-.phone img{
-  width:260px;
-  border-radius:30px;
-  box-shadow:0 30px 60px rgba(0,0,0,.6);
-}
+    <style>
+        /* --- المتغيرات والألوان --- */
+        :root {
+            --primary-color: #10b981; /* لون أخضر عصري للمال */
+            --secondary-color: #064e3b;
+            --text-color: #374151;
+            --bg-light: #f9fafb;
+            --white: #ffffff;
+            --transition: all 0.3s ease;
+        }
 
-@media(max-width:900px){
-  .card{
-    grid-template-columns:1fr;
-    text-align:center;
-  }
-  .left h1{font-size:32px}
-}
-</style>
+        /* --- التنسيقات العامة --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: var(--bg-light);
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; }
+        ul { list-style: none; }
+
+        /* --- الهيدر (القائمة العلوية) --- */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover { color: var(--primary-color); }
+
+        /* --- قسم البطل (Hero Section) --- */
+        .hero {
+            padding: 120px 0 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 90vh;
+        }
+
+        .hero-content {
+            flex: 1;
+            padding-left: 20px;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+            line-height: 1.2;
+        }
+
+        .hero-title span { color: var(--primary-color); }
+
+        .hero-description {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            color: #6b7280;
+            max-width: 500px;
+        }
+
+        .download-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 25px;
+            border-radius: 50px;
+            color: var(--white);
+            font-weight: 700;
+            transition: var(--transition);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .btn-google { background-color: #333; }
+        .btn-apple { background-color: #000; }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* محاكاة شكل الهاتف */
+        .phone-mockup {
+            width: 300px;
+            height: 600px;
+            background-color: #fff;
+            border: 10px solid #333;
+            border-radius: 40px;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .phone-mockup::before {
+            content: 'صورة التطبيق هنا';
+            color: #ccc;
+        }
+
+        /* يمكنك استبدال الكلاس أعلاه بصورة حقيقية لاحقاً */
+        .phone-mockup img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* --- قسم المميزات --- */
+        .features {
+            padding: 80px 0;
+            background-color: var(--white);
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .feature-card {
+            padding: 30px;
+            background: var(--bg-light);
+            border-radius: 20px;
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        /* --- التذييل (Footer) --- */
+        footer {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            padding: 40px 0;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        .footer-links {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .footer-links a { color: #d1d5db; }
+        .footer-links a:hover { color: var(--white); }
+
+        /* --- التجاوب مع الجوال --- */
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+                padding-top: 100px;
+            }
+
+            .hero-content { padding-left: 0; margin-top: 40px; }
+            .download-buttons { justify-content: center; }
+            
+            .hero-title { font-size: 2.2rem; }
+            
+            .phone-mockup {
+                width: 260px;
+                height: 520px;
+            }
+        }
+    </style>
 </head>
-
 <body>
 
-<div class="container">
-  <div class="card">
+    <header>
+        <div class="container navbar">
+            <div class="logo">
+                <i class="fa-solid fa-wallet"></i> مصاريفي
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#features">المميزات</a></li>
+                    <li><a href="#contact">اتصل بنا</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-    <div class="left">
-      <h1>Masarifi DZ</h1>
-      <p>
-        تحكم في مصاريفك اليومية بسهولة  
-        واجهة بسيطة، تقارير واضحة، وتصميم عصري.
-      </p>
+    <section class="hero container">
+        <div class="hero-content">
+            <h1 class="hero-title">تحكم في أموالك<br><span>بكل ذكاء وسهولة</span></h1>
+            <p class="hero-description">
+                تطبيق "مصاريفي" يساعدك على تتبع نفقاتك اليومية، تحليل مصروفاتك، وتوفير المال لتحقيق أهدافك المستقبلية. واجهة سهلة وتقارير دقيقة.
+            </p>
+            <div class="download-buttons">
+                <a href="#" class="btn btn-google">
+                    <i class="fa-brands fa-google-play fa-lg"></i>
+                    <div>
+                        <small style="display:block; font-size:0.7em; font-weight:400">حمله من</small>
+                        Google Play
+                    </div>
+                </a>
+                <a href="#" class="btn btn-apple">
+                    <i class="fa-brands fa-apple fa-lg"></i>
+                    <div>
+                        <small style="display:block; font-size:0.7em; font-weight:400">حمله من</small>
+                        App Store
+                    </div>
+                </a>
+            </div>
+        </div>
 
-      <a class="btn" href="https://www.mediafire.com/file/5g7dnfwxwskr2mw/Masarifi.apk/file" target="_blank">
-        تحميل التطبيق
-      </a>
+        <div class="hero-image">
+            <div class="phone-mockup">
+                <div style="text-align: center; color: #333;">
+                    <i class="fa-solid fa-chart-pie fa-3x" style="color:#10b981; margin-bottom:10px;"></i>
+                    <p>مكان لصورة<br>شاشة التطبيق</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-      <div class="features">
-        <div>✔ تسجيل المصاريف والدخل</div>
-        <div>✔ إحصائيات ورسوم بيانية</div>
-        <div>✔ يعمل بدون إنترنت</div>
-      </div>
-    </div>
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">لماذا تختار مصاريفي؟</h2>
+            <p style="color:#666; max-width:600px; margin:0 auto;">صمم خصيصاً ليجعل حياتك المالية أكثر تنظيماً ووضوحاً</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-chart-column"></i></div>
+                    <h3>تقارير ذكية</h3>
+                    <p>رسوم بيانية توضح لك أين تذهب أموالك بدقة، لتساعدك على اتخاذ قرارات أفضل.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                    <h3>أمان وخصوصية</h3>
+                    <p>بياناتك المالية مشفرة ومحفوظة بأمان تام، ولا يتم مشاركتها مع أي طرف ثالث.</p>
+                </div>
 
-    <div class="phone">
-      <img src="Gemini_Generated_Image_4owlhs4owlhs4owl.png">
-      <img src="Screenshot_2025_12_09_21_03_56_16_f33ce49def5c64b9ee7775aa33c7c74f.jpg">
-      <img src="Screenshot_2025_12_09_21_49_09_04_f33ce49def5c64b9ee7775aa33c7c74f.jpg">
-      <img src="Screenshot_2025_12_09_21_49_12_10_f33ce49def5c64b9ee7775aa33c7c74f.jpg">
-      <img src="Screenshot_2025_12_09_21_49_16_99_f33ce49def5c64b9ee7775aa33c7c74f.jpg">
-      <img src="Screenshot_2025_12_09_21_49_21_79_f33ce49def5c64b9ee7775aa33c7c74f.jpg">
-      <img src="Screenshot_2025_12_09_21_50_18_26_f33ce49def5c64b9ee7775aa33c7c74f.jpg">
-      <img src="Screenshot_2025_12_09_21_50_33_68_f33ce49def5c64b9ee7775aa33c7c74f.jpg">
-    </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-bolt"></i></div>
+                    <h3>سهولة الاستخدام</h3>
+                    <p>تسجيل المصاريف بضغطة زر واحدة. واجهة بسيطة تناسب الجميع.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  </div>
-</div>
+    <footer id="contact">
+        <div class="container">
+            <div class="logo" style="justify-content: center; color: white; margin-bottom: 20px;">
+                <i class="fa-solid fa-wallet"></i> مصاريفي
+            </div>
+            <div class="footer-links">
+                <a href="#">سياسة الخصوصية</a>
+                <a href="#">شروط الاستخدام</a>
+                <a href="mailto:support@masarifi.com">الدعم الفني</a>
+            </div>
+            <p>&copy; 2024 جميع الحقوق محفوظة لتطبيق مصاريفي.</p>
+        </div>
+    </footer>
 
 </body>
 </html>
-
