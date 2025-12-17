@@ -154,7 +154,7 @@
         .hero-content {
             flex: 1;
             padding-left: 20px;
-            order: 1; /* التغيير هنا: يجعل النص هو العنصر الأول (يمين في RTL) */
+            order: 1; /* على الشاشات الكبيرة: النص أولاً (يمين) */
         }
 
         .hero-title {
@@ -206,7 +206,7 @@
             flex: 1;
             display: flex;
             justify-content: center;
-            order: 2; /* التغيير هنا: يجعل الصورة هي العنصر الثاني (يسار في RTL) */
+            order: 2; /* على الشاشات الكبيرة: الصورة ثانياً (يسار) */
         }
 
         .phone-mockup {
@@ -243,8 +243,9 @@
 
         /* --- تنسيق الشبكة للمميزات --- */
         .features-grid {
+            /* تم تغييرها لـ 3 أعمدة لتناسب العدد الجديد */
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
             gap: 30px;
             margin-top: 50px;
         }
@@ -254,6 +255,8 @@
             background: var(--bg-light);
             border-radius: 20px;
             transition: var(--transition);
+            /* لزيادة الارتفاع قليلاً لتناسب النص الأطول */
+            min-height: 220px; 
         }
 
         .feature-card:hover {
@@ -317,13 +320,13 @@
         /* --- التجاوب --- */
         @media (max-width: 768px) {
             .hero {
-                /* هذا التنسيق على الهاتف يضع الصورة فوق النص */
-                flex-direction: column-reverse; 
+                /* تم التغيير هنا: يجعل الترتيب النص ثم الصورة عمودياً */
+                flex-direction: column; 
                 text-align: center;
                 padding-top: 100px;
             }
 
-            /* إزالة خاصية order عند الانتقال لنمط العمود (مهم) */
+            /* إزالة خاصية order ليتحدد الترتيب بناءً على الكود HTML (النص أولاً، الصورة ثانياً) */
             .hero-content { padding-left: 0; margin-top: 40px; order: unset; }
             .hero-image { order: unset; }
 
@@ -396,25 +399,43 @@
     <section id="features" class="section features">
         <div class="container">
             <h2 class="section-title">لماذا تختار Masarifi؟</h2>
-            <p style="color:#666; max-width:600px; margin:0 auto;">حلول مالية ذكية تناسب احتياجاتك اليومية</p>
+            <p style="color:#666; max-width:600px; margin:0 auto;">حلول مالية ذكية وشاملة، مصممة لمساعدتك على التحكم الكامل بإنفاقك.</p>
             
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-chart-column"></i></div>
-                    <h3>تقارير ذكية</h3>
-                    <p>راقب أين تذهب أموالك من خلال رسوم بيانية تفاعلية وسهلة الفهم.</p>
+                    <div class="feature-icon"><i class="fa-solid fa-file-invoice"></i></div>
+                    <h3>تتبع النفقات</h3>
+                    <p>سجل مصاريفك اليومية بسهولة تامة وتابع أين تذهب أموالك بالضبط في أي تصنيف.</p>
                 </div>
                 
                 <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
-                    <h3>أمان وخصوصية</h3>
-                    <p>بياناتك محفوظة محلياً ومشفرة لضمان أعلى درجات الخصوصية.</p>
+                    <div class="feature-icon"><i class="fa-solid fa-chart-pie"></i></div>
+                    <h3>تقارير مفصلة</h3>
+                    <p>احصل على رسوم بيانية واضحة وتقارير شهرية لفهم دقيق لعاداتك وأنماطك المالية.</p>
                 </div>
 
                 <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-bolt"></i></div>
-                    <h3>سهولة الاستخدام</h3>
-                    <p>واجهة مستخدم بسيطة تتيح لك إضافة العمليات المالية بسرعة فائقة.</p>
+                    <div class="feature-icon"><i class="fa-solid fa-piggy-bank"></i></div>
+                    <h3>أهداف التوفير</h3>
+                    <p>حدد أهداف الادخار الخاصة بك، وتتبع تقدمك بشكل مستمر نحو تحقيقها دون عناء.</p>
+                </div>
+                
+                 <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+                    <h3>مزامنة سحابية آمنة</h3>
+                    <p>تمتع بالوصول إلى بياناتك المالية المشفرة من أي جهاز في أي وقت وبأمان تام.</p>
+                </div>
+                
+                 <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-bell"></i></div>
+                    <h3>تنبيهات ذكية</h3>
+                    <p>استلم إشعارات فورية عند تجاوز الميزانية المحددة أو اقتراب موعد الفواتير الهامة.</p>
+                </div>
+                
+                 <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+                    <h3>إحصائيات وتحليل</h3>
+                    <p>حلل تاريخك المالي لتكتشف الفرص الخفية لزيادة التوفير وتقليل النفقات غير الضرورية بذكاء.</p>
                 </div>
             </div>
         </div>
