@@ -144,7 +144,7 @@
 
         /* --- قسم البطل (Hero Section) --- */
         .hero {
-            padding: 120px 0 60px;
+            padding: 150px 0 60px; 
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -153,8 +153,9 @@
 
         .hero-content {
             flex: 1;
-            padding-left: 20px;
-            order: 1; /* على الشاشات الكبيرة: النص أولاً (يمين) */
+            /* زيادة الهامش الأيسر لزيادة المسافة بين النص والصورة على سطح المكتب */
+            padding-left: 50px; 
+            order: 1; 
         }
 
         .hero-title {
@@ -206,7 +207,7 @@
             flex: 1;
             display: flex;
             justify-content: center;
-            order: 2; /* على الشاشات الكبيرة: الصورة ثانياً (يسار) */
+            order: 2; 
         }
 
         .phone-mockup {
@@ -243,7 +244,6 @@
 
         /* --- تنسيق الشبكة للمميزات --- */
         .features-grid {
-            /* تم تغييرها لـ 3 أعمدة لتناسب العدد الجديد */
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
             gap: 30px;
@@ -255,7 +255,6 @@
             background: var(--bg-light);
             border-radius: 20px;
             transition: var(--transition);
-            /* لزيادة الارتفاع قليلاً لتناسب النص الأطول */
             min-height: 220px; 
         }
 
@@ -320,14 +319,23 @@
         /* --- التجاوب --- */
         @media (max-width: 768px) {
             .hero {
-                /* تم التغيير هنا: يجعل الترتيب النص ثم الصورة عمودياً */
+                padding-top: 100px; 
                 flex-direction: column; 
                 text-align: center;
-                padding-top: 100px;
             }
 
-            /* إزالة خاصية order ليتحدد الترتيب بناءً على الكود HTML (النص أولاً، الصورة ثانياً) */
-            .hero-content { padding-left: 0; margin-top: 40px; order: unset; }
+            .hero-content { 
+                padding-left: 0; 
+                margin-top: 40px; 
+                order: unset; 
+            }
+            
+            /* التغيير الرئيسي لوضع الهاتف: زيادة المسافة أسفل أزرار التحميل */
+            .download-buttons { 
+                justify-content: center;
+                margin-bottom: 40px; 
+            }
+
             .hero-image { order: unset; }
 
             .download-buttons { justify-content: center; }
@@ -391,7 +399,7 @@
 
         <div class="hero-image">
             <div class="phone-mockup">
-                 <img src="app-screen.png.jpg" alt="واجهة تطبيق Masarifi الرئيسية">
+                 <img src="app-screen1.png.jpg" alt="واجهة تطبيق Masarifi الرئيسية">
             </div>
         </div>
     </section>
@@ -448,7 +456,7 @@
             
             <div class="screenshots-gallery">
                 <div class="screenshot-item">
-                    <img src="app-screen1.png.jpg" alt="لقطة شاشة 1">
+                    <img src="app-screen0.png.jpg" alt="لقطة شاشة 1">
                 </div>
                 <div class="screenshot-item">
                     <img src="app-screen2.png.jpg" alt="لقطة شاشة 2">
