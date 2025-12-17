@@ -154,6 +154,7 @@
         .hero-content {
             flex: 1;
             padding-left: 20px;
+            order: 1; /* التغيير هنا: يجعل النص هو العنصر الأول (يمين في RTL) */
         }
 
         .hero-title {
@@ -205,6 +206,7 @@
             flex: 1;
             display: flex;
             justify-content: center;
+            order: 2; /* التغيير هنا: يجعل الصورة هي العنصر الثاني (يسار في RTL) */
         }
 
         .phone-mockup {
@@ -315,12 +317,16 @@
         /* --- التجاوب --- */
         @media (max-width: 768px) {
             .hero {
-                flex-direction: column-reverse;
+                /* هذا التنسيق على الهاتف يضع الصورة فوق النص */
+                flex-direction: column-reverse; 
                 text-align: center;
                 padding-top: 100px;
             }
 
-            .hero-content { padding-left: 0; margin-top: 40px; }
+            /* إزالة خاصية order عند الانتقال لنمط العمود (مهم) */
+            .hero-content { padding-left: 0; margin-top: 40px; order: unset; }
+            .hero-image { order: unset; }
+
             .download-buttons { justify-content: center; }
             
             .hero-title { font-size: 2.2rem; }
@@ -447,7 +453,7 @@
             <div class="footer-links">
                 <a href="#">سياسة الخصوصية</a>
             </div>
-            <p>&copy; 2026 جميع الحقوق محفوظة لتطبيق Masarifi.</p>
+            <p>&copy; 2024 جميع الحقوق محفوظة لتطبيق Masarifi.</p>
         </div>
     </footer>
 
