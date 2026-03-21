@@ -13,7 +13,7 @@
     <style>
         /* --- المتغيرات والألوان --- */
         :root {
-            --primary-color: #009081; /* اللون المطلوب */
+            --primary-color: #009081; 
             --secondary-color: #064e3b;
             --text-color: #374151;
             --bg-light: #f9fafb;
@@ -34,6 +34,7 @@
             line-height: 1.6;
             background-color: var(--bg-light);
             overflow-x: hidden;
+            scroll-behavior: smooth; /* تنقل ناعم بين الأقسام */
         }
 
         a { text-decoration: none; }
@@ -71,7 +72,6 @@
             gap: 5px; 
         }
         
-        /* تنسيق صورة اللوغو */
         .logo img {
             height: 35px; 
             width: auto;
@@ -80,7 +80,8 @@
 
         .nav-links {
             display: flex;
-            gap: 20px;
+            gap: 25px; /* مسافة بين العناصر */
+            align-items: center;
         }
 
         .nav-links a {
@@ -91,7 +92,7 @@
 
         .nav-links a:hover { color: var(--primary-color); } 
 
-        /* --- تنسيق القائمة المنسدلة الجديدة --- */
+        /* --- تنسيق القائمة المنسدلة --- */
         .dropdown {
             position: relative;
             display: inline-block;
@@ -104,8 +105,8 @@
             min-width: 160px;
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
             z-index: 1;
-            right: 0; /* لجعلها تفتح من اليمين في لغة عربية */
-            top: 100%; /* تظهر أسفل الزر */
+            right: 0;
+            top: 100%;
             border-radius: 5px;
             overflow: hidden;
         }
@@ -113,34 +114,15 @@
         .dropdown-content a {
             color: var(--text-color);
             padding: 12px 16px;
-            text-decoration: none;
             display: block;
             text-align: right;
             border-bottom: 1px solid #eee;
         }
         
-        .dropdown-content a:last-child {
-            border-bottom: none;
-        }
-
-        .dropdown-content a:hover { 
-            background-color: var(--bg-light); 
-            color: var(--primary-color);
-        }
-
-        /* إظهار القائمة المنسدلة عند التمرير (Hover) */
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-        
-        /* تنسيق زر القائمة المنسدلة */
-        .dropdown > a {
-            padding: 0 5px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
+        .dropdown-content a:last-child { border-bottom: none; }
+        .dropdown-content a:hover { background-color: var(--bg-light); color: var(--primary-color); }
+        .dropdown:hover .dropdown-content { display: block; }
+        .dropdown > a { display: flex; align-items: center; gap: 5px; }
 
         /* --- قسم البطل (Hero Section) --- */
         .hero {
@@ -153,7 +135,6 @@
 
         .hero-content {
             flex: 1;
-            /* زيادة الهامش الأيسر لزيادة المسافة بين النص والصورة على سطح المكتب */
             padding-left: 50px; 
             order: 1; 
         }
@@ -212,18 +193,13 @@
 
         .phone-mockup {
             width: 300px; 
-            height: auto;
             border-radius: 20px; 
             box-shadow: 0 20px 50px rgba(0,0,0,0.2); 
             overflow: hidden;
-            background: none; 
-            border: none; 
         }
         
         .phone-mockup img {
             width: 100%;
-            height: auto;
-            object-fit: contain;
             display: block;
         }
 
@@ -234,15 +210,12 @@
         }
         
         .features { background-color: var(--white); }
-        .screenshots { background-color: var(--bg-light); }
-
         .section-title {
             font-size: 2rem;
             margin-bottom: 10px;
             color: var(--secondary-color);
         }
 
-        /* --- تنسيق الشبكة للمميزات --- */
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
@@ -269,7 +242,6 @@
             margin-bottom: 20px;
         }
         
-        /* --- تنسيق معرض الصور (Screenshots Gallery) --- */
         .screenshots-gallery {
             display: flex;
             justify-content: center;
@@ -280,22 +252,27 @@
         
         .screenshot-item {
             width: 180px; 
-            height: auto;
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
+            transition: var(--transition);
         }
         
-        .screenshot-item:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        .screenshot-item:hover { transform: translateY(-5px); }
+        .screenshot-item img { width: 100%; display: block; }
+
+        /* --- قسم سياسة الخصوصية --- */
+        .privacy-section {
+            background-color: var(--white);
+            text-align: right;
         }
-        
-        .screenshot-item img {
-            width: 100%;
-            height: auto;
-            display: block;
+
+        .privacy-box {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--bg-light);
+            padding: 40px;
+            border-radius: 20px;
         }
 
         /* --- الفوتر --- */
@@ -306,45 +283,15 @@
             text-align: center;
         }
 
-        .footer-links {
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        .footer-links a { color: #d1d5db; }
-        .footer-links a:hover { color: var(--white); }
-
         /* --- التجاوب --- */
         @media (max-width: 768px) {
-            .hero {
-                padding-top: 100px; 
-                flex-direction: column; 
-                text-align: center;
-            }
-
-            .hero-content { 
-                padding-left: 0; 
-                margin-top: 40px; 
-                order: unset; 
-            }
-            
-            /* التغيير الرئيسي لوضع الهاتف: زيادة المسافة أسفل أزرار التحميل */
-            .download-buttons { 
-                justify-content: center;
-                margin-bottom: 40px; 
-            }
-
+            .hero { padding-top: 100px; flex-direction: column; text-align: center; }
+            .hero-content { padding-left: 0; margin-top: 40px; order: unset; }
             .hero-image { order: unset; }
-
-            .download-buttons { justify-content: center; }
-            
+            .download-buttons { justify-content: center; margin-bottom: 40px; }
             .hero-title { font-size: 2.2rem; }
-            
-            .phone-mockup {
-                width: 260px;
-            }
+            .phone-mockup { width: 260px; }
+            .nav-links { gap: 10px; font-size: 0.9rem; }
         }
     </style>
 </head>
@@ -367,6 +314,9 @@
                             <a href="#screenshots">لقطات الشاشة</a>
                         </div>
                     </li>
+                    <li>
+                        <a href="#privacy">سياسة الخصوصية</a>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -376,7 +326,7 @@
         <div class="hero-content">
             <h1 class="hero-title">تحكم في أموالك<br><span>بكل ذكاء وسهولة</span></h1>
             <p class="hero-description">
-                تطبيق "Masarifi" يساعدك على تتبع نفقاتك اليومية، تحليل مصروفاتك، وتوفير المال لتحقيق أهدافك المستقبلية.
+                Masarifi: Your smart companion for managing daily expenses and achieving your financial goals with clarity and ease.
             </p>
             <div class="download-buttons">
                 <a href="https://www.mediafire.com/file/5g7dnfwxwskr2mw/Masarifi.apk/file" target="_blank" class="btn btn-android">
@@ -386,7 +336,6 @@
                         ملف APK
                     </div>
                 </a>
-                
                 <a href="#" class="btn btn-apple" title="غير متوفر حالياً">
                     <i class="fa-brands fa-apple fa-lg"></i>
                     <div>
@@ -399,7 +348,7 @@
 
         <div class="hero-image">
             <div class="phone-mockup">
-                 <img src="app-screen1.png.jpg" alt="واجهة تطبيق Masarifi الرئيسية">
+                <img src="app-screen.png.jpg" alt="واجهة تطبيق Masarifi الرئيسية">
             </div>
         </div>
     </section>
@@ -407,43 +356,36 @@
     <section id="features" class="section features">
         <div class="container">
             <h2 class="section-title">لماذا تختار Masarifi؟</h2>
-            <p style="color:#666; max-width:600px; margin:0 auto;">حلول مالية ذكية وشاملة، مصممة لمساعدتك على التحكم الكامل بإنفاقك.</p>
-            
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fa-solid fa-file-invoice"></i></div>
                     <h3>تتبع النفقات</h3>
                     <p>سجل مصاريفك اليومية بسهولة تامة وتابع أين تذهب أموالك بالضبط في أي تصنيف.</p>
                 </div>
-                
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fa-solid fa-chart-pie"></i></div>
                     <h3>تقارير مفصلة</h3>
                     <p>احصل على رسوم بيانية واضحة وتقارير شهرية لفهم دقيق لعاداتك وأنماطك المالية.</p>
                 </div>
-
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fa-solid fa-piggy-bank"></i></div>
                     <h3>أهداف التوفير</h3>
                     <p>حدد أهداف الادخار الخاصة بك، وتتبع تقدمك بشكل مستمر نحو تحقيقها دون عناء.</p>
                 </div>
-                
-                 <div class="feature-card">
+                <div class="feature-card">
                     <div class="feature-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
-                    <h3>مزامنة سحابية آمنة</h3>
-                    <p>تمتع بالوصول إلى بياناتك المالية المشفرة من أي جهاز في أي وقت وبأمان تام.</p>
+                    <h3>مزامنة سحابية</h3>
+                    <p>الوصول لبياناتك من أي جهاز في أي وقت وبأمان تام.</p>
                 </div>
-                
-                 <div class="feature-card">
+                <div class="feature-card">
                     <div class="feature-icon"><i class="fa-solid fa-bell"></i></div>
                     <h3>تنبيهات ذكية</h3>
-                    <p>استلم إشعارات فورية عند تجاوز الميزانية المحددة أو اقتراب موعد الفواتير الهامة.</p>
+                    <p>استلم إشعارات فورية عند تجاوز الميزانية المحددة أو اقتراب موعد الفواتير.</p>
                 </div>
-                
-                 <div class="feature-card">
+                <div class="feature-card">
                     <div class="feature-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
                     <h3>إحصائيات وتحليل</h3>
-                    <p>حلل تاريخك المالي لتكتشف الفرص الخفية لزيادة التوفير وتقليل النفقات غير الضرورية بذكاء.</p>
+                    <p>حلل تاريخك المالي لتكتشف الفرص الخفية لزيادة التوفير وتقليل النفقات غير الضرورية.</p>
                 </div>
             </div>
         </div>
@@ -452,40 +394,28 @@
     <section id="screenshots" class="section screenshots">
         <div class="container">
             <h2 class="section-title">شاهد التطبيق من الداخل</h2>
-            <p style="color:#666; max-width:600px; margin:0 auto;">استعرض ميزات التطبيق الرئيسية من خلال هذه اللقطات.</p>
-            
             <div class="screenshots-gallery">
-                <div class="screenshot-item">
-                    <img src="app-screen.png.jpg" alt="لقطة شاشة 1">
-                </div>
-                <div class="screenshot-item">
-                    <img src="app-screen1.png.jpg" alt="لقطة شاشة 1">
-                <div class="screenshot-item">
-                    </div>
-                    <img src="app-screen2.png.jpg" alt="لقطة شاشة 2">
-                </div>
-                <div class="screenshot-item">
-                    <img src="app-screen3.png.jpg" alt="لقطة شاشة 3">
-                </div>
-                <div class="screenshot-item">
-                    <img src="app-screen4.png.jpg" alt="لقطة شاشة 4">
-                </div>
-                <div class="screenshot-item">
-                    <img src="app-screen5.png.jpg" alt="لقطة شاشة 5">
-                </div>
+                <div class="screenshot-item"><img src="app-screen1.png.jpg" alt="1"></div>
+                <div class="screenshot-item"><img src="app-screen2.png.jpg" alt="2"></div>
+                <div class="screenshot-item"><img src="app-screen3.png.jpg" alt="3"></div>
+                <div class="screenshot-item"><img src="app-screen4.png.jpg" alt="4"></div>
+                <div class="screenshot-item"><img src="app-screen5.png.jpg" alt="5"></div>
             </div>
         </div>
     </section>
 
-    <footer id="footer-section"> 
+    <section id="privacy" class="section privacy-section">
         <div class="container">
-            <div class="logo" style="justify-content: center; color: white; margin-bottom: 20px;">
-                <img src="logo.png.png" alt="شعار Masarifi" style="height: 35px; margin-left: 5px;"> Masarifi
+            <h2 class="section-title">سياسة الخصوصية</h2>
+            <div class="privacy-box">
+                <p>نحن في <strong>Masarifi</strong> نولي أهمية قصوى لخصوصية بياناتك المالية. التطبيق مصمم ليعمل بأمان، حيث يتم تخزين البيانات بشكل مشفر. نحن لا نشارك معلوماتك الشخصية مع أي طرف ثالث، ونلتزم بأعلى معايير الحماية لضمان تجربة مستخدم آمنة وموثوقة.</p>
             </div>
-            <div class="footer-links">
-                <a href="#">سياسة الخصوصية</a>
-            </div>
-            <p>&copy; 2026 جميع الحقوق محفوظة لتطبيق Masarifi.</p>
+        </div>
+    </section>
+
+    <footer> 
+        <div class="container">
+            <p>&copy; 2024 جميع الحقوق محفوظة لتطبيق Masarifi.</p>
         </div>
     </footer>
 
