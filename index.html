@@ -23,7 +23,7 @@
         body { font-family: 'Tajawal', sans-serif; color: var(--text-color); background-color: var(--bg-light); scroll-behavior: smooth; overflow-x: hidden; }
         a { text-decoration: none; }
 
-        /* --- الهيدر --- */
+        /* --- Header --- */
         header { background-color: var(--white); box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: fixed; width: 100%; top: 0; z-index: 1000; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
         .navbar { display: flex; justify-content: space-between; align-items: center; height: 70px; }
@@ -43,7 +43,7 @@
         .hero-content { flex: 1; padding-left: 50px; order: 1; }
         .hero-title { font-size: 3rem; font-weight: 900; margin-bottom: 20px; color: var(--secondary-color); line-height: 1.2; }
         .hero-title span { color: var(--primary-color); }
-        .hero-description { font-size: 1.1rem; margin-bottom: 30px; color: #6b7280; max-width: 500px; }
+        .hero-description { font-size: 1.1rem; margin-bottom: 30px; color: #6b7280; max-width: 550px; }
         .download-buttons { display: flex; gap: 15px; flex-wrap: wrap; }
         .btn { display: inline-flex; align-items: center; gap: 10px; padding: 12px 25px; border-radius: 50px; color: var(--white); font-weight: 700; transition: var(--transition); box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
         .btn-android { background-color: #333; }
@@ -58,80 +58,30 @@
         .section-title { font-size: 2.2rem; margin-bottom: 40px; color: var(--secondary-color); position: relative; }
         .section-title::after { content: ''; display: block; width: 60px; height: 4px; background: var(--primary-color); margin: 10px auto; border-radius: 2px; }
 
-        /* المميزات */
         .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
         .feature-card { padding: 30px; background: var(--white); border-radius: 20px; transition: var(--transition); border: 1px solid #eee; }
         .feature-card:hover { transform: translateY(-10px); border-color: var(--primary-color); box-shadow: 0 15px 30px rgba(0,0,0,0.05); }
         .feature-icon { color: var(--primary-color); font-size: 2.5rem; margin-bottom: 20px; }
 
-        /* --- تصميم السلايدر (Screenshots Slider) --- */
-        .slider-container {
-            position: relative;
-            max-width: 1000px;
-            margin: 0 auto;
-            overflow: hidden;
-            padding: 20px 0;
-        }
-
-        .slider-track {
-            display: flex;
-            gap: 20px;
-            transition: transform 0.5s ease-in-out;
-            cursor: grab;
-        }
-
-        .screenshot-item {
-            min-width: 220px; /* عرض الصورة الواحدة */
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            user-select: none;
-        }
-
-        .screenshot-item img {
-            width: 100%;
-            display: block;
-            pointer-events: none;
-        }
-
-        /* أزرار السلايدر */
-        .slider-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 10;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            transition: var(--transition);
-        }
-
-        .slider-btn:hover { background: var(--secondary-color); scale: 1.1; }
-        .prev-btn { right: 10px; } /* اليمين في RTL هو السابق */
-        .next-btn { left: 10px; }
-
-        /* --- Privacy Section --- */
-        .privacy-box { max-width: 800px; margin: 0 auto; background: var(--white); padding: 40px; border-radius: 20px; text-align: right; border: 1px solid #eee; }
+        /* --- Slider --- */
+        .slider-container { position: relative; max-width: 1000px; margin: 0 auto; overflow: hidden; padding: 20px 0; }
+        .slider-track { display: flex; gap: 20px; transition: transform 0.5s ease-in-out; }
+        .screenshot-item { min-width: 220px; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .screenshot-item img { width: 100%; display: block; }
+        .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: var(--primary-color); color: white; border: none; width: 45px; height: 45px; border-radius: 50%; cursor: pointer; z-index: 10; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.2); transition: var(--transition); }
+        .prev-btn { right: 10px; } .next-btn { left: 10px; }
 
         /* Footer */
         footer { background: var(--secondary-color); color: white; padding: 30px 0; text-align: center; }
+        footer a { color: #ccc; margin-right: 15px; font-size: 0.9rem; transition: 0.3s; }
+        footer a:hover { color: var(--white); }
 
-        /* --- Media Queries --- */
         @media (max-width: 768px) {
             .hero { padding-top: 100px; flex-direction: column; text-align: center; }
             .hero-content { padding-left: 0; margin-top: 30px; }
             .hero-title { font-size: 2.2rem; }
             .download-buttons { justify-content: center; margin-bottom: 40px; }
             .phone-mockup { width: 250px; }
-            .screenshot-item { min-width: 180px; }
         }
     </style>
 </head>
@@ -149,7 +99,7 @@
                             <a href="#screenshots">لقطات الشاشة</a>
                         </div>
                     </li>
-                    <li><a href="#privacy">سياسة الخصوصية</a></li>
+                    <li><a href="privacy.html">سياسة الخصوصية</a></li>
                 </ul>
             </nav>
         </div>
@@ -159,7 +109,7 @@
         <div class="hero-content">
             <h1 class="hero-title">تحكم في أموالك<br><span>بكل ذكاء وسهولة</span></h1>
             <p class="hero-description">
-                Masarifi is your intuitive personal finance companion designed to track expenses, set budgets, and achieve financial freedom effortlessly.
+                Masarifi is the intuitive and powerful personal finance application designed to put you firmly in control of your financial life. Track every expense, set realistic budgets, and build a foundation for financial freedom with smart insights.
             </p>
             <div class="download-buttons">
                 <a href="https://www.mediafire.com/file/5g7dnfwxwskr2mw/Masarifi.apk/file" target="_blank" class="btn btn-android">
@@ -183,9 +133,6 @@
             <div class="feature-card"><div class="feature-icon"><i class="fa-solid fa-file-invoice"></i></div><h3>تتبع النفقات</h3><p>سجل مصاريفك اليومية بسهولة وتابع أين تذهب أموالك.</p></div>
             <div class="feature-card"><div class="feature-icon"><i class="fa-solid fa-chart-pie"></i></div><h3>تقارير مفصلة</h3><p>رسوم بيانية شهرية لفهم عاداتك المالية بعمق.</p></div>
             <div class="feature-card"><div class="feature-icon"><i class="fa-solid fa-piggy-bank"></i></div><h3>أهداف التوفير</h3><p>حدد أهداف ادخار وتابع تقدمك نحو تحقيقها.</p></div>
-            <div class="feature-card"><div class="feature-icon"><i class="fa-solid fa-cloud"></i></div><h3>مزامنة سحابية</h3><p>بياناتك معك دائماً على أي جهاز وفي أي وقت.</p></div>
-            <div class="feature-card"><div class="feature-icon"><i class="fa-solid fa-bell"></i></div><h3>تنبيهات ذكية</h3><p>تنبيهات عند تجاوز الميزانية أو موعد الفواتير.</p></div>
-            <div class="feature-card"><div class="feature-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div><h3>إحصائيات دقيقة</h3><p>حلل تاريخك المالي لتكتشف فرصاً جديدة للتوفير.</p></div>
         </div>
     </section>
 
@@ -204,44 +151,31 @@
         </div>
     </section>
 
-    <section id="privacy" class="section container">
-        <h2 class="section-title">سياسة الخصوصية</h2>
-        <div class="privacy-box">
-            <p>نحن في <strong>Masarifi</strong> نلتزم بحماية بياناتك. التطبيق لا يجمع معلوماتك الشخصية لبيعها، بل يستخدمها محلياً وسحابياً (بطلبك) لتوفير تجربة إدارة مالية دقيقة وآمنة تماماً.</p>
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 جميع الحقوق محفوظة لـ Masarifi</p>
+            <a href="privacy.html">سياسة الخصوصية</a>
         </div>
-    </section>
-
-    <footer><div class="container"><p>&copy; 2024 جميع الحقوق محفوظة لـ Masarifi</p></div></footer>
+    </footer>
 
     <script>
         const track = document.getElementById('sliderTrack');
         let index = 0;
-
         function moveSlider(direction) {
-            const itemWidth = document.querySelector('.screenshot-item').offsetWidth + 20; // العرض + gap
-            const maxIndex = track.children.length - Math.floor(track.parentElement.offsetWidth / itemWidth);
-            
-            index += direction;
-            
-            if (index < 0) index = 0;
-            if (index > maxIndex) index = maxIndex;
-
-            track.style.transform = `translateX(${index * itemWidth}px)`;
-        }
-
-        // تحريك تلقائي بسيط
-        let autoSlide = setInterval(() => {
             const itemWidth = document.querySelector('.screenshot-item').offsetWidth + 20;
             const maxIndex = track.children.length - Math.floor(track.parentElement.offsetWidth / itemWidth);
-            
+            index += direction;
+            if (index < 0) index = 0;
+            if (index > maxIndex) index = maxIndex;
+            track.style.transform = `translateX(${index * itemWidth}px)`;
+        }
+        setInterval(() => {
+            const itemWidth = document.querySelector('.screenshot-item').offsetWidth + 20;
+            const maxIndex = track.children.length - Math.floor(track.parentElement.offsetWidth / itemWidth);
             index++;
             if (index > maxIndex) index = 0;
-            
             track.style.transform = `translateX(${index * itemWidth}px)`;
-        }, 3000);
-
-        // توقف التحريك عند لمس السلايدر
-        track.parentElement.addEventListener('mouseenter', () => clearInterval(autoSlide));
+        }, 4000);
     </script>
 </body>
 </html>
