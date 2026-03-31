@@ -23,12 +23,13 @@
         body { font-family: 'Tajawal', sans-serif; color: var(--text-color); background-color: var(--bg-light); scroll-behavior: smooth; overflow-x: hidden; }
         a { text-decoration: none; }
 
-        /* --- Header --- */
+        /* --- الهيدر (القائمة العلوية بدون السياسة) --- */
         header { background-color: var(--white); box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: fixed; width: 100%; top: 0; z-index: 1000; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
         .navbar { display: flex; justify-content: space-between; align-items: center; height: 70px; }
         .logo { font-size: 1.5rem; font-weight: 900; color: var(--primary-color); display: flex; align-items: center; gap: 5px; }
         .logo img { height: 35px; margin-left: 5px; }
+        
         .nav-links { display: flex; gap: 25px; align-items: center; }
         .nav-links a { color: var(--text-color); font-weight: 500; transition: var(--transition); }
         .nav-links a:hover { color: var(--primary-color); }
@@ -43,12 +44,16 @@
         .hero-content { flex: 1; padding-left: 50px; order: 1; }
         .hero-title { font-size: 3rem; font-weight: 900; margin-bottom: 20px; color: var(--secondary-color); line-height: 1.2; }
         .hero-title span { color: var(--primary-color); }
-        .hero-description { font-size: 1.1rem; margin-bottom: 30px; color: #6b7280; max-width: 550px; }
-        .download-buttons { display: flex; gap: 15px; flex-wrap: wrap; }
+        .hero-description { font-size: 1.1rem; margin-bottom: 40px; color: #6b7280; max-width: 550px; }
+        
+        /* المسافة بين أزرار التحميل والصورة */
+        .download-buttons { display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 40px; }
+        
         .btn { display: inline-flex; align-items: center; gap: 10px; padding: 12px 25px; border-radius: 50px; color: var(--white); font-weight: 700; transition: var(--transition); box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
         .btn-android { background-color: #333; }
         .btn-apple { background-color: #000; opacity: 0.6; cursor: not-allowed; }
         .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 15px rgba(0,0,0,0.2); }
+        
         .hero-image { flex: 1; display: flex; justify-content: center; order: 2; }
         .phone-mockup { width: 300px; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.2); overflow: hidden; }
         .phone-mockup img { width: 100%; display: block; }
@@ -63,25 +68,76 @@
         .feature-card:hover { transform: translateY(-10px); border-color: var(--primary-color); box-shadow: 0 15px 30px rgba(0,0,0,0.05); }
         .feature-icon { color: var(--primary-color); font-size: 2.5rem; margin-bottom: 20px; }
 
-        /* --- Slider --- */
-        .slider-container { position: relative; max-width: 1000px; margin: 0 auto; overflow: hidden; padding: 20px 0; }
-        .slider-track { display: flex; gap: 20px; transition: transform 0.5s ease-in-out; }
-        .screenshot-item { min-width: 220px; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        .screenshot-item img { width: 100%; display: block; }
-        .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: var(--primary-color); color: white; border: none; width: 45px; height: 45px; border-radius: 50%; cursor: pointer; z-index: 10; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.2); transition: var(--transition); }
-        .prev-btn { right: 10px; } .next-btn { left: 10px; }
+        /* --- السلايدر الجديد (يدعم اللمس والسحب) --- */
+        .slider-container {
+            position: relative;
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
 
-        /* Footer */
-        footer { background: var(--secondary-color); color: white; padding: 30px 0; text-align: center; }
-        footer a { color: #ccc; margin-right: 15px; font-size: 0.9rem; transition: 0.3s; }
-        footer a:hover { color: var(--white); }
+        .slider-track {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto; /* يسمح باللمس والسحب */
+            scroll-snap-type: x mandatory; /* يجعل الصور تتوقف في المنتصف */
+            scroll-behavior: smooth;
+            padding: 20px;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* إخفاء شريط التمرير الافتراضي لشكل أجمل */
+        .slider-track::-webkit-scrollbar { display: none; }
+
+        .screenshot-item {
+            min-width: 250px;
+            scroll-snap-align: center; /* العنصر ينجذب للمنتصف */
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .screenshot-item img {
+            width: 100%;
+            display: block;
+            pointer-events: none; /* لمنع سحب الصورة نفسها بدلاً من السلايدر */
+        }
+
+        /* أزرار السلايدر (للحاسوب) */
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        .prev-btn { right: 0; }
+        .next-btn { left: 0; }
+
+        /* --- الفوتر (يحتوي على السياسة) --- */
+        footer { background: var(--secondary-color); color: white; padding: 40px 0; text-align: center; }
+        .footer-content p { margin-bottom: 15px; opacity: 0.8; }
+        .footer-links a { color: var(--white); font-weight: 500; border-bottom: 1px solid transparent; transition: 0.3s; }
+        .footer-links a:hover { border-bottom-color: var(--primary-color); color: var(--primary-color); }
 
         @media (max-width: 768px) {
             .hero { padding-top: 100px; flex-direction: column; text-align: center; }
             .hero-content { padding-left: 0; margin-top: 30px; }
             .hero-title { font-size: 2.2rem; }
-            .download-buttons { justify-content: center; margin-bottom: 40px; }
+            .download-buttons { justify-content: center; }
             .phone-mockup { width: 250px; }
+            .slider-btn { display: none; } /* إخفاء الأزرار في الجوال والاعتماد على اللمس */
         }
     </style>
 </head>
@@ -99,8 +155,7 @@
                             <a href="#screenshots">لقطات الشاشة</a>
                         </div>
                     </li>
-                    <li><a href="privacy.html">سياسة الخصوصية</a></li>
-                </ul>
+                    </ul>
             </nav>
         </div>
     </header>
@@ -109,7 +164,7 @@
         <div class="hero-content">
             <h1 class="hero-title">تحكم في أموالك<br><span>بكل ذكاء وسهولة</span></h1>
             <p class="hero-description">
-                Masarifi is the intuitive and powerful personal finance application designed to put you firmly in control of your financial life. Track every expense, set realistic budgets, and build a foundation for financial freedom with smart insights.
+                Masarifi is the intuitive personal finance application designed to put you firmly in control. Track every expense, set budgets, and achieve financial freedom with smart insights.
             </p>
             <div class="download-buttons">
                 <a href="https://www.mediafire.com/file/5g7dnfwxwskr2mw/Masarifi.apk/file" target="_blank" class="btn btn-android">
@@ -139,7 +194,7 @@
     <section id="screenshots" class="section container" style="background: #f1f5f9; border-radius: 30px;">
         <h2 class="section-title">جولة داخل التطبيق</h2>
         <div class="slider-container">
-            <button class="slider-btn prev-btn" onclick="moveSlider(-1)"><i class="fa-solid fa-chevron-right"></i></button>
+            <button class="slider-btn prev-btn" onclick="scrollSlider(1)"><i class="fa-solid fa-chevron-right"></i></button>
             <div class="slider-track" id="sliderTrack">
                 <div class="screenshot-item"><img src="app-screen1.png.jpg" alt="1"></div>
                 <div class="screenshot-item"><img src="app-screen2.png.jpg" alt="2"></div>
@@ -147,35 +202,56 @@
                 <div class="screenshot-item"><img src="app-screen4.png.jpg" alt="4"></div>
                 <div class="screenshot-item"><img src="app-screen5.png.jpg" alt="5"></div>
             </div>
-            <button class="slider-btn next-btn" onclick="moveSlider(1)"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="slider-btn next-btn" onclick="scrollSlider(-1)"><i class="fa-solid fa-chevron-left"></i></button>
         </div>
+        <p style="margin-top: 15px; color: #888; font-size: 0.9rem;"><i class="fa-solid fa-hand-pointer"></i> اسحب الصور لليسار أو اليمين للاستعراض</p>
     </section>
 
     <footer>
-        <div class="container">
-            <p>&copy; 2026 جميع الحقوق محفوظة لـ Masarifi</p>
-            <a href="privacy.html">سياسة الخصوصية</a>
+        <div class="container footer-content">
+            <p>&copy; 2026 Masarifi - جميع الحقوق محفوظة</p>
+            <div class="footer-links">
+                <a href="privacy.html">سياسة الخصوصية</a>
+            </div>
         </div>
     </footer>
 
     <script>
         const track = document.getElementById('sliderTrack');
-        let index = 0;
-        function moveSlider(direction) {
-            const itemWidth = document.querySelector('.screenshot-item').offsetWidth + 20;
-            const maxIndex = track.children.length - Math.floor(track.parentElement.offsetWidth / itemWidth);
-            index += direction;
-            if (index < 0) index = 0;
-            if (index > maxIndex) index = maxIndex;
-            track.style.transform = `translateX(${index * itemWidth}px)`;
+
+        // وظيفة الأزرار للتحكم في السكرول
+        function scrollSlider(direction) {
+            const scrollAmount = 270; // عرض الصورة + الفراغ
+            track.scrollBy({
+                left: direction * scrollAmount,
+                behavior: 'smooth'
+            });
         }
-        setInterval(() => {
-            const itemWidth = document.querySelector('.screenshot-item').offsetWidth + 20;
-            const maxIndex = track.children.length - Math.floor(track.parentElement.offsetWidth / itemWidth);
-            index++;
-            if (index > maxIndex) index = 0;
-            track.style.transform = `translateX(${index * itemWidth}px)`;
-        }, 4000);
+
+        // كود اختياري: سحب بالماوس للكمبيوتر (Drag to Scroll)
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        track.addEventListener('mousedown', (e) => {
+            isDown = true;
+            track.classList.add('active');
+            startX = e.pageX - track.offsetLeft;
+            scrollLeft = track.scrollLeft;
+        });
+        track.addEventListener('mouseleave', () => {
+            isDown = false;
+        });
+        track.addEventListener('mouseup', () => {
+            isDown = false;
+        });
+        track.addEventListener('mousemove', (e) => {
+            if(!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - track.offsetLeft;
+            const walk = (x - startX) * 2; 
+            track.scrollLeft = scrollLeft - walk;
+        });
     </script>
 </body>
 </html>
